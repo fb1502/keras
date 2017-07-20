@@ -87,6 +87,10 @@ Neural style transfer.
 [pretrained_word_embeddings.py](pretrained_word_embeddings.py)
 Loads pre-trained word embeddings (GloVe embeddings) into a frozen Keras Embedding layer, and uses it to train a text classification model on the 20 Newsgroup dataset.
 
+[resnet50.py](resnet50.py)
+Train ResNet-50 on ImageNet data with multi-GPU support.
+Note: Go through [imagenet_readme.md](imagenet_readme.md) to download and preprocess ImageNet data. Next, run [train_rn50.sh](train_rn50.sh) to start training. You will be asked for training and validation dataset paths if the environment variables `DATA_TRAIN_PATH` and `DATA_VALID_PATH` are not set. These paths should include the file names to the RecordIO (.rec) files.
+
 [reuters_mlp.py](reuters_mlp.py)
 Trains and evaluate a simple MLP on the Reuters newswire topic classification task.
 

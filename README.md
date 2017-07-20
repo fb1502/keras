@@ -1,4 +1,4 @@
-# Keras: Deep Learning library for TensorFlow and Theano
+# Keras: Deep Learning library for MxNet, TensorFlow and Theano
 
 [![Build Status](https://travis-ci.org/fchollet/keras.svg?branch=master)](https://travis-ci.org/fchollet/keras)
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg?maxAge=2592000)](https://github.com/fchollet/keras/blob/master/LICENSE)
@@ -6,7 +6,7 @@
 
 ## You have just found Keras.
 
-Keras is a high-level neural networks library, written in Python and capable of running on top of either [TensorFlow](https://github.com/tensorflow/tensorflow) or [Theano](https://github.com/Theano/Theano). It was developed with a focus on enabling fast experimentation. *Being able to go from idea to result with the least possible delay is key to doing good research.*
+Keras is a high-level neural networks library, written in Python and capable of running on top of [MxNet](https://github.com/dmlc/mxnet),  [TensorFlow](https://github.com/tensorflow/tensorflow) or [Theano](https://github.com/Theano/Theano). It was developed with a focus on enabling fast experimentation. *Being able to go from idea to result with the least possible delay is key to doing good research.*
 
 Use Keras if you need a deep learning library that:
 
@@ -114,6 +114,15 @@ Keras uses the following dependencies:
 - HDF5 and h5py (optional, required if you use model saving/loading functions)
 - Optional but recommended if you use CNNs: cuDNN.
 
+*When using the MxNet backend:*
+
+***Note:*** MxNet backend is the only one that currently has automatic multi-GPU capability.
+
+***Note:*** It is highly recommended that MxNet is installed based on compiling from source, especially if using CUDA > 8.
+
+- MxNet
+    -[Installation from source](http://mxnet.io/get_started/build_from_source.html)
+    -Installation via pip with CUDA 8 and MKL: ```pip install mxnet-cu80mkl```
 
 *When using the TensorFlow backend:*
 
