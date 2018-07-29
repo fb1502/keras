@@ -19,15 +19,19 @@ else:
 
 
 def text_to_word_sequence(text,
-                          filters='!"#$%&()*+,-./:;<=>?@[\\]^_`{|}~\t\n',
-                          lower=True, split=" "):
+                          filters='!"#$%&()*+,-./:;<=>?@[\\]^_`{|}~\t\n！，、。；：？（）',
+                          lower=True, split=" ", char_level=False):
     """Converts a text to a sequence of word indices.
-
+    # Adaptation
+        Combining char_level split.
+        Making it fit for Chinese characters.
+        
     # Arguments
         text: Input text (string).
         filters: Sequence of characters to filter out.
         lower: Whether to convert the input to lowercase.
         split: Sentence split marker (string).
+        char_level: if True, every character will be treated as a word.
 
     # Returns
         A list of integer word indices.
@@ -36,8 +40,10 @@ def text_to_word_sequence(text,
         text = text.lower()
     text = text.translate(maketrans(filters, split * len(filters)))
     seq = text.split(split)
-    return [i for i in seq if i]
-
+    if char_level:
+        return [item for sublist in seq if sublist for item in sublist if item]
+    else:
+        return [i for i in seq if i]
 
 def one_hot(text, n,
             filters='!"#$%&()*+,-./:;<=>?@[\\]^_`{|}~\t\n',
@@ -103,10 +109,11 @@ class Tokenizer(object):
         self.document_count = 0
         for text in texts:
             self.document_count += 1
-            seq = text if self.char_level else text_to_word_sequence(text,
-                                                                     self.filters,
-                                                                     self.lower,
-                                                                     self.split)
+            seq = text_to_word_sequence(text,
+                                        self.filters,
+                                        self.lower,
+                                        self.split,
+                                        self.char_level)
             for w in seq:
                 if w in self.word_counts:
                     self.word_counts[w] += 1
